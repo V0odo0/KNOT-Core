@@ -4,6 +4,7 @@ using System.Reflection;
 using UnityEditor;
 using UnityEngine;
 using Object = UnityEngine.Object;
+using PackageInfo = UnityEditor.PackageManager.PackageInfo;
 
 namespace Knot.Core.Editor
 {
@@ -84,6 +85,11 @@ namespace Knot.Core.Editor
                 _cachedIconsActiveState.Add(iconName, icon);
 
             return icon;
+        }
+
+        public static bool IsUpmPackage(Type type)
+        {
+            return PackageInfo.FindForAssembly(Assembly.GetAssembly(type)) != null;
         }
     }
 }

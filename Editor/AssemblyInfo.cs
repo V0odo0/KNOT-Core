@@ -5,3 +5,5 @@
 [assembly: InternalsVisibleTo("Knot.Localization.Tests.Editor")]
 
 [assembly: InternalsVisibleTo("Knot.ProjectMod.Editor")]
+
+[assembly: InternalsVisibleTo("Knot.Audio.Editor")]
