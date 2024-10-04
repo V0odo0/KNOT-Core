@@ -138,9 +138,11 @@ namespace Knot.Core.Editor
         internal static string GetManagedReferenceTypeName(this SerializedProperty property)
         {
             var type = property.GetManagedReferenceType();
-            if (type == null)
-                return property.displayName;
+            return type == null ? property.displayName : GetManagedReferenceTypeName(type);
+        }
 
+        internal static string GetManagedReferenceTypeName(this Type type)
+        {
             if (_managedReferenceTypeNamesCache.ContainsKey(type))
                 return _managedReferenceTypeNamesCache[type];
 
