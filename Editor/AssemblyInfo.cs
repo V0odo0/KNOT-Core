@@ -7,3 +7,6 @@
 [assembly: InternalsVisibleTo("Knot.ProjectMod.Editor")]
 
 [assembly: InternalsVisibleTo("Knot.Audio.Editor")]
+
+[assembly: InternalsVisibleTo("Knot.RCPatcher")]
+[assembly: InternalsVisibleTo("Knot.RCPatcher.Editor")]
