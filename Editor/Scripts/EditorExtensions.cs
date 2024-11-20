@@ -201,6 +201,10 @@ namespace Knot.Core.Editor
 
         internal static bool IsPersistent(this UnityEngine.Object obj) => EditorUtility.IsPersistent(obj);
 
+        internal static SerializedProperty FindBackingFieldProperty(this SerializedObject serializedObject, string originalPropertyName)
+        {
+            return serializedObject.FindProperty($"<{originalPropertyName}>k__BackingField");
+        }
 
         public class TypeInfo
         {
