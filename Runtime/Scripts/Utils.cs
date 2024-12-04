@@ -13,7 +13,7 @@ namespace Knot.Core
     {
         public const string EditorRootPath = "KNOT/";
 
-        public static T GetProjectSettings<T>() where T : ScriptableObject
+        public static T GetProjectSettings<T>(bool includeInPreloadedAssets = true) where T : ScriptableObject
         {
             T settings;
 
@@ -38,10 +38,15 @@ namespace Knot.Core
                     AssetDatabase.SaveAssets();
                     settings = instance;
 
-                    var preloadedAssets = PlayerSettings.GetPreloadedAssets();
-                    PlayerSettings.SetPreloadedAssets(preloadedAssets.Append(settings).ToArray());
+                    if (includeInPreloadedAssets)
+                    {
+                        var preloadedAssets = PlayerSettings.GetPreloadedAssets();
+                        if (!preloadedAssets.Contains(settings))
+                            PlayerSettings.SetPreloadedAssets(preloadedAssets.Append(settings).ToArray());
+                    }
                 }
-                else settings = allSettings.First(); }
+                else settings = allSettings.First();
+            }
             
 #else
             settings = Resources.FindObjectsOfTypeAll<T>().FirstOrDefault();
