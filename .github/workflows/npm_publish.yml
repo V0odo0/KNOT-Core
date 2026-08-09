@@ -1,17 +1,26 @@
-name: Publish to NPM
+name: Publish to npm
 
 on:
   push:
-    branches: main
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
 
 jobs:
-  npm:
+  publish:
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v2
-      with:
-        registry-url: "https://registry.npmjs.org"
-    - run: npm publish --access public
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          registry-url: https://registry.npmjs.org
+
+      - run: npm ci
+      - run: npm test
+      - run: npm publish
