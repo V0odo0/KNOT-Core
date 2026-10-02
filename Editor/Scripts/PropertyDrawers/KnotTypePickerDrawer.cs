@@ -60,6 +60,13 @@ namespace Knot.Core
                 var types = BaseType.GetDerivedTypesInfo();
                 GenericMenu menu = new GenericMenu();
 
+                menu.AddItem(EditorGUIUtility.TrTextContent("[Null]"), selectedType == null, () =>
+                {
+                    property.managedReferenceValue = null;
+                    property.serializedObject.ApplyModifiedProperties();
+                });
+                menu.AddSeparator(string.Empty);
+
                 HashSet<Type> typeConstraints = null;
                 if (!Attribute.AllowSameTypeInArray)
                 {
