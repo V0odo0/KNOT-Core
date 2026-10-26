@@ -1,3 +1,7 @@
+## 1.1.0 (2026-10-27)
+
+* Minimum Unity version raised to 6000.3
+
 ## 1.0.10 (2026-10-11)
 
 * KnotTypePicker: native UI Toolkit inspector - the selected type's fields are editable inside lists (they were not in the default inspector, only in Debug mode)
